@@ -318,32 +318,42 @@ html, body {
   outline-offset: 0;
 }
 
-#color-picker {
+.color-picker-wrap {
+  position: relative;
   width: 22px;
   height: 22px;
-  padding: 0;
+  flex-shrink: 0;
   border: 2px solid;
   border-top-color: #ffffff;
   border-left-color: #ffffff;
   border-right-color: #404040;
   border-bottom-color: #404040;
   cursor: pointer;
-  flex-shrink: 0;
-  background: none;
-  -webkit-appearance: none;
-  appearance: none;
-  border-radius: 0;
+  background: conic-gradient(red, yellow, lime, cyan, blue, magenta, red);
+  border-radius: 50%;
   overflow: hidden;
 }
-#color-picker::-webkit-color-swatch-wrapper { padding: 0; }
-#color-picker::-webkit-color-swatch { border: none; }
-#color-picker.active {
+.color-picker-wrap:hover {
+  outline: 1px solid #000080;
+  outline-offset: 1px;
+}
+.color-picker-wrap.active {
   border-top-color: #404040;
   border-left-color: #404040;
   border-right-color: #ffffff;
   border-bottom-color: #ffffff;
   outline: 1px dotted #000000;
   outline-offset: 0;
+}
+#color-picker {
+  opacity: 0;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  padding: 0;
+  border: none;
 }
 
 /* ============================================================
