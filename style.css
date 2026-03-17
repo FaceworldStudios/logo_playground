@@ -1,0 +1,1091 @@
+/* ============================================================
+   WINDOWS 95 / XP LOGO REVIEW APP
+   Base reset & system fonts
+   ============================================================ */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  background: #008080; /* Classic Win95/XP desktop teal */
+  font-family: "MS Sans Serif", Tahoma, "Microsoft Sans Serif", sans-serif;
+  font-size: 11px;
+  color: #000000;
+  overflow: hidden;
+}
+
+/* ============================================================
+   BORDER UTILITIES
+   ============================================================ */
+
+/* Raised bevel (button up state) */
+.bevel-raised {
+  border-style: solid;
+  border-width: 2px;
+  border-color: #ffffff #808080 #808080 #ffffff;
+  border-top-color: #ffffff;
+  border-left-color: #ffffff;
+  border-right-color: #404040;
+  border-bottom-color: #404040;
+}
+
+/* Sunken/inset bevel */
+.bevel-sunken {
+  border-style: solid;
+  border-width: 2px;
+  border-color: #808080 #ffffff #ffffff #808080;
+  border-top-color: #404040;
+  border-left-color: #404040;
+  border-right-color: #dfdfdf;
+  border-bottom-color: #dfdfdf;
+}
+
+/* Single-pixel inset for inputs */
+.bevel-inset {
+  border: 2px solid;
+  border-top-color: #808080;
+  border-left-color: #808080;
+  border-right-color: #dfdfdf;
+  border-bottom-color: #dfdfdf;
+}
+
+/* ============================================================
+   APP WINDOW
+   ============================================================ */
+
+#app-window {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #d4d0c8;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid #808080;
+  outline: 1px solid #404040;
+}
+
+/* ============================================================
+   TITLE BAR
+   ============================================================ */
+
+#titlebar {
+  height: 22px;
+  min-height: 22px;
+  background: linear-gradient(to right, #000080, #1084d0);
+  display: flex;
+  align-items: center;
+  padding: 0 4px 0 4px;
+  gap: 4px;
+  flex-shrink: 0;
+  user-select: none;
+}
+
+#titlebar-icon {
+  font-size: 12px;
+  line-height: 1;
+  filter: none;
+}
+
+#titlebar-text {
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: bold;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  letter-spacing: 0.01em;
+  text-shadow: 1px 1px 0 rgba(0,0,0,0.5);
+}
+
+#titlebar-controls {
+  display: flex;
+  gap: 2px;
+  align-items: center;
+}
+
+.titlebar-btn {
+  width: 16px;
+  height: 14px;
+  font-size: 9px;
+  line-height: 1;
+  background: #d4d0c8;
+  color: #000000;
+  border: 1px solid;
+  border-top-color: #ffffff;
+  border-left-color: #ffffff;
+  border-right-color: #404040;
+  border-bottom-color: #404040;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  font-family: "MS Sans Serif", Tahoma, sans-serif;
+}
+
+.titlebar-btn:active {
+  border-top-color: #404040;
+  border-left-color: #404040;
+  border-right-color: #ffffff;
+  border-bottom-color: #ffffff;
+}
+
+.titlebar-btn-close {
+  background: #d4d0c8;
+  font-size: 8px;
+}
+
+/* ============================================================
+   MENU BAR
+   ============================================================ */
+
+#menubar {
+  height: 20px;
+  min-height: 20px;
+  background: #d4d0c8;
+  display: flex;
+  align-items: center;
+  padding: 0 4px;
+  border-bottom: 1px solid #808080;
+  flex-shrink: 0;
+  user-select: none;
+}
+
+.menu-item {
+  padding: 2px 8px;
+  font-size: 11px;
+  cursor: default;
+}
+
+.menu-item:hover {
+  background: #000080;
+  color: #ffffff;
+}
+
+/* ============================================================
+   TOOLBAR
+   ============================================================ */
+
+#toolbar {
+  height: 34px;
+  min-height: 34px;
+  background: #d4d0c8;
+  display: flex;
+  align-items: center;
+  padding: 2px 4px;
+  gap: 0;
+  border-bottom: 2px solid;
+  border-bottom-color: #808080;
+  border-top: 1px solid #ffffff;
+  flex-shrink: 0;
+  flex-wrap: nowrap;
+  overflow: hidden;
+}
+
+.toolbar-group {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0 6px;
+  white-space: nowrap;
+}
+
+.toolbar-separator {
+  width: 2px;
+  height: 24px;
+  border-left: 1px solid #808080;
+  border-right: 1px solid #ffffff;
+  margin: 0 2px;
+  flex-shrink: 0;
+}
+
+.toolbar-label {
+  font-size: 11px;
+  color: #000000;
+  white-space: nowrap;
+}
+
+.toolbar-value {
+  font-size: 11px;
+  font-weight: bold;
+  color: #000080;
+  white-space: nowrap;
+}
+
+/* ============================================================
+   WINDOWS BUTTONS
+   ============================================================ */
+
+.win-btn {
+  height: 22px;
+  padding: 0 10px;
+  background: #d4d0c8;
+  color: #000000;
+  font-family: "MS Sans Serif", Tahoma, sans-serif;
+  font-size: 11px;
+  cursor: pointer;
+  border: 2px solid;
+  border-top-color: #ffffff;
+  border-left-color: #ffffff;
+  border-right-color: #404040;
+  border-bottom-color: #404040;
+  outline: 1px solid #808080;
+  outline-offset: -3px;
+  white-space: nowrap;
+  user-select: none;
+  line-height: 1;
+}
+
+.win-btn:hover {
+  background: #d8d8d8;
+}
+
+.win-btn:active,
+.win-btn.pressed {
+  border-top-color: #404040;
+  border-left-color: #404040;
+  border-right-color: #ffffff;
+  border-bottom-color: #ffffff;
+  padding-top: 1px;
+  padding-left: 11px;
+}
+
+.win-btn:focus {
+  outline: 1px dotted #000000;
+  outline-offset: -4px;
+}
+
+/* ============================================================
+   WINDOWS INPUT
+   ============================================================ */
+
+.win-input {
+  height: 20px;
+  padding: 1px 4px;
+  background: #ffffff;
+  color: #000000;
+  font-family: "MS Sans Serif", Tahoma, sans-serif;
+  font-size: 11px;
+  border: 2px solid;
+  border-top-color: #808080;
+  border-left-color: #808080;
+  border-right-color: #dfdfdf;
+  border-bottom-color: #dfdfdf;
+  outline: none;
+  width: 80px;
+}
+
+.win-input:focus {
+  border-top-color: #404040;
+  border-left-color: #404040;
+}
+
+/* ============================================================
+   SWATCHES
+   ============================================================ */
+
+.swatch {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  border: 2px solid;
+  border-top-color: #ffffff;
+  border-left-color: #ffffff;
+  border-right-color: #404040;
+  border-bottom-color: #404040;
+  flex-shrink: 0;
+}
+
+.swatch:hover {
+  outline: 1px solid #000080;
+  outline-offset: 1px;
+}
+
+.swatch.active {
+  border-top-color: #404040;
+  border-left-color: #404040;
+  border-right-color: #ffffff;
+  border-bottom-color: #ffffff;
+  outline: 1px dotted #000000;
+  outline-offset: 0;
+}
+
+/* ============================================================
+   MAIN AREA (whiteboard + sidebar)
+   ============================================================ */
+
+#main-area {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* ============================================================
+   WHITEBOARD
+   ============================================================ */
+
+#whiteboard-container {
+  flex: 1;
+  min-width: 0;
+  padding: 6px;
+  overflow: hidden;
+}
+
+#whiteboard {
+  width: 100%;
+  height: 100%;
+  background: #ffffff;
+  position: relative;
+  overflow: hidden;
+  /* Sunken inset border */
+  border: 2px solid;
+  border-top-color: #808080;
+  border-left-color: #808080;
+  border-right-color: #dfdfdf;
+  border-bottom-color: #dfdfdf;
+  outline: 1px solid #404040;
+  outline-offset: -2px;
+  cursor: default;
+}
+
+#whiteboard.drag-over {
+  outline: 2px dashed #000080;
+  outline-offset: -4px;
+}
+
+/* ============================================================
+   BOARD LOGO ITEMS
+   ============================================================ */
+
+.board-logo {
+  position: absolute;
+  cursor: move;
+  user-select: none;
+}
+
+.board-logo-inner {
+  position: relative;
+  display: inline-block;
+}
+
+/* Background variants */
+.board-logo-inner.bg-light {
+  background: none;
+}
+
+.board-logo-inner.bg-dark {
+  background: #1a1a1a;
+  padding: 4px;
+}
+
+.board-logo-inner.bg-transparent {
+  background: none;
+}
+
+.board-logo-inner.bg-checkerboard {
+  background-image:
+    linear-gradient(45deg, #cccccc 25%, transparent 25%),
+    linear-gradient(-45deg, #cccccc 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #cccccc 75%),
+    linear-gradient(-45deg, transparent 75%, #cccccc 75%);
+  background-size: 8px 8px;
+  background-position: 0 0, 0 4px, 4px -4px, -4px 0;
+}
+
+.board-logo img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Tint overlay */
+.tint-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  opacity: 0;
+  transition: opacity 0.1s;
+}
+
+.tint-active .tint-overlay {
+  opacity: 0.6;
+}
+
+/* Selection state */
+.board-logo.selected .board-logo-inner {
+  outline: 2px dotted #000080;
+  outline-offset: 2px;
+}
+
+/* Hover controls */
+.board-logo-controls {
+  position: absolute;
+  top: -14px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.1s;
+}
+
+.board-logo:hover .board-logo-controls {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.board-logo.selected .board-logo-controls {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.board-ctrl-btn {
+  width: 16px;
+  height: 14px;
+  font-size: 9px;
+  line-height: 1;
+  background: #d4d0c8;
+  border: 1px solid;
+  border-top-color: #ffffff;
+  border-left-color: #ffffff;
+  border-right-color: #404040;
+  border-bottom-color: #404040;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.board-ctrl-btn:active {
+  border-top-color: #404040;
+  border-left-color: #404040;
+  border-right-color: #ffffff;
+  border-bottom-color: #ffffff;
+}
+
+.board-ctrl-btn.star-btn.starred {
+  color: #f5a623;
+}
+
+.board-ctrl-btn.delete-btn {
+  background: #d4d0c8;
+}
+
+/* Scale pill — only visible when logo is selected */
+.scale-pill {
+  position: absolute;
+  bottom: -16px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #ffffcc;
+  border: 1px solid #808080;
+  padding: 1px 5px;
+  font-size: 9px;
+  white-space: nowrap;
+  pointer-events: none;
+  color: #000000;
+  display: none;
+}
+.board-logo.selected .scale-pill {
+  display: block;
+}
+
+/* Resize handle */
+.resize-handle {
+  position: absolute;
+  bottom: -4px;
+  right: -4px;
+  width: 12px;
+  height: 12px;
+  background: #d4d0c8;
+  border: 1px solid;
+  border-top-color: #ffffff;
+  border-left-color: #ffffff;
+  border-right-color: #404040;
+  border-bottom-color: #404040;
+  cursor: se-resize;
+  z-index: 10;
+}
+
+/* Warning icon for dark bg logos */
+.dark-bg-warning {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 10px;
+  pointer-events: none;
+}
+
+/* ============================================================
+   SHORTLIST SIDEBAR
+   ============================================================ */
+
+#shortlist-sidebar {
+  width: 84px;
+  min-width: 84px;
+  background: #d4d0c8;
+  border-left: 2px solid;
+  border-left-color: #ffffff;
+  border-top: none;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+#shortlist-header {
+  background: #d4d0c8;
+  padding: 4px 4px 3px;
+  border-bottom: 2px solid;
+  border-bottom-color: #808080;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+  flex-shrink: 0;
+}
+
+#shortlist-count {
+  font-size: 12px;
+  font-weight: bold;
+  color: #000080;
+}
+
+.shortlist-title {
+  font-size: 10px;
+  color: #444444;
+}
+
+#shortlist-items {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+#shortlist-items::-webkit-scrollbar {
+  width: 16px;
+}
+#shortlist-items::-webkit-scrollbar-track {
+  background: #d4d0c8;
+  border-left: 1px solid #808080;
+}
+#shortlist-items::-webkit-scrollbar-thumb {
+  background: #d4d0c8;
+  border: 1px solid;
+  border-top-color: #ffffff;
+  border-left-color: #ffffff;
+  border-right-color: #404040;
+  border-bottom-color: #404040;
+}
+#shortlist-items::-webkit-scrollbar-button {
+  background: #d4d0c8;
+  height: 16px;
+  border: 1px solid;
+  border-top-color: #ffffff;
+  border-left-color: #ffffff;
+  border-right-color: #404040;
+  border-bottom-color: #404040;
+}
+
+.shortlist-item {
+  background: #d4d0c8;
+  border: 2px solid;
+  border-top-color: #ffffff;
+  border-left-color: #ffffff;
+  border-right-color: #404040;
+  border-bottom-color: #404040;
+  padding: 3px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.shortlist-item:hover {
+  background: #e8e8e8;
+}
+
+.shortlist-item:active {
+  border-top-color: #404040;
+  border-left-color: #404040;
+  border-right-color: #ffffff;
+  border-bottom-color: #ffffff;
+}
+
+.shortlist-item.flash {
+  background: #000080;
+  color: #ffffff;
+}
+
+.shortlist-item img {
+  width: 56px;
+  height: 36px;
+  object-fit: contain;
+  display: block;
+}
+
+.shortlist-item-id {
+  font-size: 10px;
+  color: #000000;
+  text-align: center;
+}
+
+/* ============================================================
+   TRAY
+   ============================================================ */
+
+#tray-container {
+  height: 90px;
+  min-height: 90px;
+  background: #404040;
+  border-top: 2px solid;
+  border-top-color: #808080;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+#tray-label {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+  color: #c0c0c0;
+  font-size: 9px;
+  letter-spacing: 2px;
+  padding: 0 4px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid #606060;
+  flex-shrink: 0;
+  user-select: none;
+}
+
+#tray {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 8px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+}
+
+/* Tray scrollbar styling */
+#tray::-webkit-scrollbar {
+  height: 14px;
+}
+#tray::-webkit-scrollbar-track {
+  background: #303030;
+}
+#tray::-webkit-scrollbar-thumb {
+  background: #808080;
+  border: 1px solid;
+  border-top-color: #c0c0c0;
+  border-left-color: #c0c0c0;
+  border-right-color: #404040;
+  border-bottom-color: #404040;
+}
+#tray::-webkit-scrollbar-button {
+  background: #606060;
+  width: 14px;
+  border: 1px solid #808080;
+}
+
+/* Tray logo card */
+.tray-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  padding: 5px 4px 4px;
+  background: #606060;
+  border: 2px solid;
+  border-top-color: #909090;
+  border-left-color: #909090;
+  border-right-color: #303030;
+  border-bottom-color: #303030;
+  cursor: grab;
+  flex-shrink: 0;
+  width: 78px;
+  user-select: none;
+  transition: opacity 0.15s;
+}
+
+.tray-card:hover {
+  background: #707070;
+  border-top-color: #b0b0b0;
+  border-left-color: #b0b0b0;
+}
+
+.tray-card:active {
+  cursor: grabbing;
+}
+
+.tray-card.on-board {
+  opacity: 0.4;
+}
+
+.tray-card.drag-source {
+  opacity: 0.6;
+}
+
+.tray-card.flash-highlight {
+  background: #000080;
+  border-color: #4040c0;
+}
+
+.tray-card-img-wrap {
+  width: 64px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.tray-card-img-wrap img {
+  max-width: 64px;
+  max-height: 44px;
+  object-fit: contain;
+  pointer-events: none;
+  display: block;
+}
+
+.tray-tint-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  opacity: 0;
+}
+
+.tray-card-label {
+  font-size: 10px;
+  color: #c0c0c0;
+  text-align: center;
+  white-space: nowrap;
+  max-width: 70px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ============================================================
+   STATUS BAR
+   ============================================================ */
+
+#statusbar {
+  height: 20px;
+  min-height: 20px;
+  background: #d4d0c8;
+  border-top: 1px solid #808080;
+  display: flex;
+  align-items: center;
+  padding: 0 4px;
+  gap: 0;
+  flex-shrink: 0;
+}
+
+#status-text {
+  flex: 1;
+  font-size: 11px;
+  padding: 0 6px;
+  border: 1px solid;
+  border-top-color: #808080;
+  border-left-color: #808080;
+  border-right-color: #dfdfdf;
+  border-bottom-color: #dfdfdf;
+  height: 16px;
+  line-height: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#status-count {
+  font-size: 11px;
+  padding: 0 8px;
+  border: 1px solid;
+  border-top-color: #808080;
+  border-left-color: #808080;
+  border-right-color: #dfdfdf;
+  border-bottom-color: #dfdfdf;
+  height: 16px;
+  line-height: 14px;
+  margin-left: 4px;
+  white-space: nowrap;
+}
+
+#status-bg-indicator {
+  font-size: 11px;
+  padding: 0 8px;
+  border: 1px solid;
+  border-top-color: #808080;
+  border-left-color: #808080;
+  border-right-color: #dfdfdf;
+  border-bottom-color: #dfdfdf;
+  height: 16px;
+  line-height: 14px;
+  margin-left: 4px;
+  white-space: nowrap;
+}
+
+/* ============================================================
+   TOAST NOTIFICATION
+   ============================================================ */
+
+.toast {
+  position: fixed;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #ffffcc;
+  border: 1px solid #000000;
+  padding: 3px 10px;
+  font-size: 11px;
+  font-family: "MS Sans Serif", Tahoma, sans-serif;
+  color: #000000;
+  z-index: 9999;
+  pointer-events: none;
+  box-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+  transition: opacity 0.3s;
+}
+
+.toast.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ============================================================
+   DRAG GHOST / DRAG OVERLAY
+   ============================================================ */
+
+#drag-ghost {
+  position: fixed;
+  pointer-events: none;
+  z-index: 10000;
+  opacity: 0.75;
+  transform: translate(-50%, -50%);
+  border: 1px dashed #000080;
+  background: rgba(255,255,255,0.9);
+  padding: 2px;
+}
+
+/* ============================================================
+   SEARCH HIGHLIGHT
+   ============================================================ */
+
+.tray-card.search-highlight {
+  background: #000080 !important;
+  border-color: #4040ff !important;
+}
+
+.tray-card.search-highlight .tray-card-label {
+  color: #ffffff !important;
+}
+
+/* ============================================================
+   MISC UTILITY
+   ============================================================ */
+
+.hidden {
+  display: none !important;
+}
+
+/* Prevent selection on drag */
+body.dragging {
+  user-select: none;
+  cursor: grabbing !important;
+}
+
+/* Transparent logos on board: no background, shows whiteboard through */
+.board-logo-inner.bg-transparent {
+  background: none;
+  padding: 0;
+}
+
+/* Window resize/move cursor */
+.board-logo.selected {
+  z-index: 100;
+}
+
+/* ============================================================
+   TOOL PALETTE (left panel, MS Paint style)
+   ============================================================ */
+
+#tool-palette {
+  width: 44px;
+  background: #c0c0c0;
+  border-right: 2px solid #808080;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 4px 3px;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+.tpal-btn {
+  width: 36px;
+  height: 32px;
+  background: #c0c0c0;
+  border: 2px solid;
+  border-top-color: #ffffff;
+  border-left-color: #ffffff;
+  border-right-color: #808080;
+  border-bottom-color: #808080;
+  font-size: 14px;
+  font-family: 'Arial', sans-serif;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  user-select: none;
+  outline: none;
+  box-sizing: border-box;
+}
+.tpal-btn:hover { background: #d0d0d0; }
+.tpal-btn.active {
+  border-top-color: #808080;
+  border-left-color: #808080;
+  border-right-color: #ffffff;
+  border-bottom-color: #ffffff;
+  background: #b8b8b8;
+}
+
+.tpal-divider {
+  width: 34px;
+  border: none;
+  border-top: 1px solid #808080;
+  border-bottom: 1px solid #ffffff;
+  margin: 3px 0;
+}
+
+#tool-size-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  width: 36px;
+  padding: 3px 2px;
+  border: 2px solid;
+  border-top-color: #808080;
+  border-left-color: #808080;
+  border-right-color: #ffffff;
+  border-bottom-color: #ffffff;
+}
+.size-opt {
+  width: 100%;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-radius: 1px;
+}
+.size-opt:hover { background: #a0a8d0; }
+.size-opt.active { background: #000080; }
+.sdot {
+  background: #000000;
+  border-radius: 50%;
+}
+.size-opt.active .sdot { background: #ffffff; }
+.sdot-sm  { width: 3px;  height: 3px; }
+.sdot-md  { width: 7px;  height: 7px; }
+.sdot-lg  { width: 13px; height: 13px; }
+
+/* Whiteboard cursor per tool */
+#whiteboard.tool-text   { cursor: text; }
+#whiteboard.tool-spray  { cursor: crosshair; }
+
+/* ============================================================
+   SPRAY CANVAS
+   ============================================================ */
+
+#spray-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* ============================================================
+   TEXT BOXES
+   ============================================================ */
+
+.board-textbox {
+  position: absolute;
+  z-index: 200;
+  cursor: move;
+  min-width: 20px;
+  min-height: 1em;
+  user-select: none;
+}
+
+.textbox-controls {
+  position: absolute;
+  top: -18px;
+  right: 0;
+  display: none;
+  gap: 1px;
+}
+.board-textbox:hover .textbox-controls,
+.board-textbox.editing .textbox-controls {
+  display: flex;
+}
+
+.textbox-content {
+  outline: none;
+  white-space: pre-wrap;
+  word-break: break-word;
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  line-height: 1.2;
+  min-width: 20px;
+  min-height: 1em;
+  cursor: move;
+  user-select: none;
+  border: 1px dashed transparent;
+  padding: 1px 3px;
+}
+.board-textbox:hover .textbox-content { border-color: #808080; }
+.board-textbox.editing .textbox-content {
+  cursor: text;
+  user-select: text;
+  border-color: #000080;
+}

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Logo Review</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Main Application Window -->
+<div id="app-window">
+
+  <!-- Title Bar -->
+  <div id="titlebar">
+    <div id="titlebar-icon">🖼</div>
+    <span id="titlebar-text">Logo Review — Good Problem</span>
+    <div id="titlebar-controls">
+      <button class="titlebar-btn" id="btn-minimize">_</button>
+      <button class="titlebar-btn" id="btn-maximize">□</button>
+      <button class="titlebar-btn titlebar-btn-close" id="btn-close">✕</button>
+    </div>
+  </div>
+
+  <!-- Menu Bar -->
+  <div id="menubar">
+    <span class="menu-item">File</span>
+    <span class="menu-item">Edit</span>
+    <span class="menu-item">View</span>
+    <span class="menu-item">Help</span>
+  </div>
+
+  <!-- Toolbar -->
+  <div id="toolbar">
+    <div class="toolbar-group">
+      <span class="toolbar-label">Project:</span>
+      <span id="project-name" class="toolbar-value">Loading...</span>
+    </div>
+
+    <div class="toolbar-separator"></div>
+
+    <div class="toolbar-group">
+      <span class="toolbar-label">Find:</span>
+      <input type="text" id="search-input" class="win-input" placeholder="Logo ID..." maxlength="10">
+      <button class="win-btn" id="btn-search">Go</button>
+    </div>
+
+    <div class="toolbar-separator"></div>
+
+    <div class="toolbar-group" id="swatches-group">
+      <span class="toolbar-label">Color:</span>
+      <div class="swatch" data-color="#000000" style="background:#000000;" title="Black"></div>
+      <div class="swatch" data-color="#ffffff" style="background:#ffffff;" title="White"></div>
+      <div class="swatch" data-color="#378ADD" style="background:#378ADD;" title="Blue"></div>
+      <div class="swatch" data-color="#E8604C" style="background:#E8604C;" title="Coral"></div>
+      <div class="swatch" data-color="#2ABFBF" style="background:#2ABFBF;" title="Teal"></div>
+      <div class="swatch" data-color="#F5A623" style="background:#F5A623;" title="Amber"></div>
+    </div>
+
+    <div class="toolbar-separator"></div>
+
+    <div class="toolbar-group">
+      <button class="win-btn" id="btn-clear-board">Clear Board</button>
+      <button class="win-btn" id="btn-bg-toggle">BG: White</button>
+      <button class="win-btn" id="btn-copy-link">Copy Share Link</button>
+    </div>
+  </div>
+
+  <!-- Main Content Area -->
+  <div id="main-area">
+
+    <!-- Tool Palette (MS Paint style) -->
+    <div id="tool-palette">
+      <button class="tpal-btn active" data-tool="select" id="btn-tool-select" title="Select / Move  [S]">↖</button>
+      <button class="tpal-btn" data-tool="text"   id="btn-tool-text"   title="Add Text  [T]">A</button>
+      <button class="tpal-btn" data-tool="spray"  id="btn-tool-spray"  title="Spray Paint  [P]">☁</button>
+      <div class="tpal-divider"></div>
+      <div id="tool-size-panel">
+        <div class="size-opt"        data-idx="0" title="Small"><div class="sdot sdot-sm"></div></div>
+        <div class="size-opt active" data-idx="1" title="Medium"><div class="sdot sdot-md"></div></div>
+        <div class="size-opt"        data-idx="2" title="Large"><div class="sdot sdot-lg"></div></div>
+      </div>
+      <div class="tpal-divider"></div>
+      <button class="tpal-btn" id="btn-clear-spray" title="Clear spray paint" style="font-size:9px;font-weight:normal;line-height:1.1">CLR<br>SPR</button>
+    </div>
+
+    <!-- Whiteboard -->
+    <div id="whiteboard-container">
+      <div id="whiteboard">
+        <canvas id="spray-canvas"></canvas>
+        <!-- Board logos and text boxes placed here dynamically -->
+      </div>
+    </div>
+
+    <!-- Shortlist Sidebar -->
+    <div id="shortlist-sidebar">
+      <div id="shortlist-header">
+        <span id="shortlist-count">★ 0</span>
+        <span class="shortlist-title">Shortlist</span>
+      </div>
+      <div id="shortlist-items">
+        <!-- Shortlisted logos rendered here -->
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Tray -->
+  <div id="tray-container">
+    <div id="tray-label">LOGOS</div>
+    <div id="tray">
+      <!-- Tray logo cards rendered here -->
+    </div>
+  </div>
+
+  <!-- Status Bar -->
+  <div id="statusbar">
+    <div id="status-text">Ready</div>
+    <div id="status-count"></div>
+    <div id="status-bg-indicator">BG: White</div>
+  </div>
+
+</div>
+
+<!-- Toast Notification -->
+<div id="toast" class="toast hidden">Link copied!</div>
+
+<script src="app.js"></script>
+</body>
+</html>
