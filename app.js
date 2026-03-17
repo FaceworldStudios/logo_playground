@@ -1170,8 +1170,8 @@ async function init() {
 
     // Update title bar and toolbar
     projectName.textContent = STATE.project;
-    document.title = `Logo Review — ${STATE.project}`;
-    $('titlebar-text').textContent = `Logo Review — ${STATE.project}`;
+    document.title = `Good Problem Studios - An Abundance of Logos - Playground Tool`;
+    $('titlebar-text').textContent = `Good Problem Studios - An Abundance of Logos - Playground Tool`;
 
     // Render tray
     renderTray();
