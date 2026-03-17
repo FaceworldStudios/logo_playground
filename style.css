@@ -318,6 +318,34 @@ html, body {
   outline-offset: 0;
 }
 
+#color-picker {
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  border: 2px solid;
+  border-top-color: #ffffff;
+  border-left-color: #ffffff;
+  border-right-color: #404040;
+  border-bottom-color: #404040;
+  cursor: pointer;
+  flex-shrink: 0;
+  background: none;
+  -webkit-appearance: none;
+  appearance: none;
+  border-radius: 0;
+  overflow: hidden;
+}
+#color-picker::-webkit-color-swatch-wrapper { padding: 0; }
+#color-picker::-webkit-color-swatch { border: none; }
+#color-picker.active {
+  border-top-color: #404040;
+  border-left-color: #404040;
+  border-right-color: #ffffff;
+  border-bottom-color: #ffffff;
+  outline: 1px dotted #000000;
+  outline-offset: 0;
+}
+
 /* ============================================================
    MAIN AREA (whiteboard + sidebar)
    ============================================================ */

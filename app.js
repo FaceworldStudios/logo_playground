@@ -390,12 +390,20 @@ function selectBoardLogo(instanceId) {
     el.classList.add('selected');
     el.style.zIndex = getMaxZ() + 1;
   }
-  // Sync swatch highlight to this logo's color
+  // Sync swatch/picker highlight to this logo's color
   const instance = getInstanceById(instanceId);
   document.querySelectorAll('.swatch').forEach(s => s.classList.remove('active'));
+  const cp = document.getElementById('color-picker');
+  if (cp) cp.classList.remove('active');
   if (instance && instance.color) {
     const sw = document.querySelector(`.swatch[data-color="${instance.color}"]`);
-    if (sw) sw.classList.add('active');
+    if (sw) {
+      sw.classList.add('active');
+    } else if (cp) {
+      // Color came from picker — sync picker value and mark it active
+      cp.value = instance.color;
+      cp.classList.add('active');
+    }
     STATE.pendingColor = instance.color;
   } else {
     STATE.pendingColor = null;
@@ -406,6 +414,8 @@ function deselectAll() {
   document.querySelectorAll('.board-logo.selected').forEach(el => el.classList.remove('selected'));
   STATE.selectedInstanceId = null;
   document.querySelectorAll('.swatch').forEach(s => s.classList.remove('active'));
+  const cp = document.getElementById('color-picker');
+  if (cp) cp.classList.remove('active');
   STATE.pendingColor = null;
 }
 
@@ -660,6 +670,37 @@ document.querySelectorAll('.swatch').forEach(swatch => {
       }
     }
   });
+});
+
+// ============================================================
+// TOOLBAR: COLOR PICKER
+// ============================================================
+
+const colorPicker = document.getElementById('color-picker');
+
+function applyCustomColor(color) {
+  document.querySelectorAll('.swatch').forEach(s => s.classList.remove('active'));
+  colorPicker.classList.add('active');
+  STATE.pendingColor = color;
+  if (STATE.selectedInstanceId) {
+    const inst = getInstanceById(STATE.selectedInstanceId);
+    if (inst) {
+      inst.color = color;
+      const el = whiteboard.querySelector(`[data-instance-id="${STATE.selectedInstanceId}"]`);
+      if (el) applyTintToElement(el.querySelector('.board-logo-img'), el.querySelector('.tint-overlay'), color);
+      renderShortlist();
+      updateStatus(`Logo #${inst.id} color → ${color}`);
+    }
+  } else {
+    updateStatus('Select a logo on the canvas to apply color');
+  }
+}
+
+colorPicker.addEventListener('input', () => applyCustomColor(colorPicker.value));
+
+// When a swatch is clicked, deactivate the color picker highlight
+document.querySelectorAll('.swatch').forEach(s => {
+  s.addEventListener('click', () => colorPicker.classList.remove('active'));
 });
 
 // ============================================================
