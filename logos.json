@@ -24,14 +24,13 @@
     { "id": "21", "file": "logos/hf_20260317_065103_c86c7a20-44bc-4f26-8cdd-71f403f108da.jpeg", "label": "Logo 21", "tags": [], "bg": "light" },
     { "id": "22", "file": "logos/hf_20260317_065415_690c13a0-de91-4688-82d6-3f9ecaf726be.jpeg", "label": "Logo 22", "tags": [], "bg": "light" },
     { "id": "23", "file": "logos/hf_20260317_065523_ca210782-01d4-4a78-939c-dcec1218b360.jpeg", "label": "Logo 23", "tags": [], "bg": "light" },
-    { "id": "24", "file": "logos/hf_20260317_065719_1116a75e-946f-4102-abbd-0caf041616a3.jpeg", "label": "Logo 24", "tags": [], "bg": "light" },
-    { "id": "25", "file": "logos/hf_20260317_065857_dda77e91-412c-4f6b-8f3a-6644113c6727.png", "label": "Logo 25", "tags": [], "bg": "light" },
-    { "id": "26", "file": "logos/image (3) copy 2.webp", "label": "Logo 26", "tags": [], "bg": "light" },
-    { "id": "27", "file": "logos/image (3) copy.webp", "label": "Logo 27", "tags": [], "bg": "light" },
-    { "id": "28", "file": "logos/image (3).webp", "label": "Logo 28", "tags": [], "bg": "light" },
-    { "id": "29", "file": "logos/zAsset.png", "label": "Logo 29", "tags": [], "bg": "light" },
-    { "id": "30", "file": "logos/hf_20260317_070854_d4ff2471-17a7-4838-b590-3f118bc38652.jpeg", "label": "Logo 30", "tags": [], "bg": "light" },
-    { "id": "31", "file": "logos/hf_20260317_070915_53747970-b3cf-494c-9f71-98a053728067.jpeg", "label": "Logo 31", "tags": [], "bg": "light" },
-    { "id": "32", "file": "logos/hf_20260317_070915_f7e5d8d6-c818-43eb-84ee-171964896e51.jpeg", "label": "Logo 32", "tags": [], "bg": "light" }
+    { "id": "24", "file": "logos/hf_20260317_065857_dda77e91-412c-4f6b-8f3a-6644113c6727.png", "label": "Logo 24", "tags": [], "bg": "light" },
+    { "id": "25", "file": "logos/image (3) copy 2.webp", "label": "Logo 25", "tags": [], "bg": "light" },
+    { "id": "26", "file": "logos/image (3) copy.webp", "label": "Logo 26", "tags": [], "bg": "light" },
+    { "id": "27", "file": "logos/image (3).webp", "label": "Logo 27", "tags": [], "bg": "light" },
+    { "id": "28", "file": "logos/zAsset.png", "label": "Logo 28", "tags": [], "bg": "light" },
+    { "id": "29", "file": "logos/hf_20260317_070854_d4ff2471-17a7-4838-b590-3f118bc38652.jpeg", "label": "Logo 29", "tags": [], "bg": "light" },
+    { "id": "30", "file": "logos/hf_20260317_070915_53747970-b3cf-494c-9f71-98a053728067.jpeg", "label": "Logo 30", "tags": [], "bg": "light" },
+    { "id": "31", "file": "logos/hf_20260317_070915_f7e5d8d6-c818-43eb-84ee-171964896e51.jpeg", "label": "Logo 31", "tags": [], "bg": "light" }
   ]
 }
