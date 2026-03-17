@@ -1030,6 +1030,7 @@ body.dragging {
 
 /* Whiteboard cursor per tool */
 #whiteboard.tool-text   { cursor: text; }
+#whiteboard.tool-brush  { cursor: crosshair; }
 #whiteboard.tool-spray  { cursor: crosshair; }
 
 /* ============================================================

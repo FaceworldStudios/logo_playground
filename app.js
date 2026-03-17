@@ -864,6 +864,7 @@ document.addEventListener('keydown', e => {
   // Tool shortcuts
   if (e.key === 's' || e.key === 'S') setActiveTool('select');
   if (e.key === 't' || e.key === 'T') setActiveTool('text');
+  if (e.key === 'b' || e.key === 'B') setActiveTool('brush');
   if (e.key === 'p' || e.key === 'P') setActiveTool('spray');
 });
 
@@ -886,13 +887,14 @@ function setActiveTool(tool) {
   });
   const sprayCanvas = $('spray-canvas');
   if (sprayCanvas) {
-    sprayCanvas.style.pointerEvents = tool === 'spray' ? 'auto' : 'none';
-    sprayCanvas.style.zIndex = tool === 'spray' ? '500' : '2';
+    const canvasTool = tool === 'spray' || tool === 'brush';
+    sprayCanvas.style.pointerEvents = canvasTool ? 'auto' : 'none';
+    sprayCanvas.style.zIndex = canvasTool ? '500' : '2';
   }
   // Cursor on whiteboard
-  whiteboard.classList.remove('tool-text', 'tool-spray');
+  whiteboard.classList.remove('tool-text', 'tool-brush', 'tool-spray');
   if (tool !== 'select') whiteboard.classList.add('tool-' + tool);
-  const labels = { select: 'Select / Move', text: 'Text  [double-click to edit]', spray: 'Spray Paint  [P to toggle]' };
+  const labels = { select: 'Select / Move', text: 'Text  [double-click to edit]', brush: 'Paintbrush', spray: 'Spray Paint' };
   updateStatus('Tool: ' + (labels[tool] || tool));
 }
 
@@ -1045,24 +1047,37 @@ function initSpray() {
 
   const sprayCanvas = $('spray-canvas');
 
+  let lastBrushPos = null;
+
   sprayCanvas.addEventListener('mousedown', e => {
     isSpraying = true;
     const rect = sprayCanvas.getBoundingClientRect();
     sprayPos = { x: e.clientX - rect.left, y: e.clientY - rect.top };
-    doSprayAt(sprayPos.x, sprayPos.y);
-    sprayTimer = setInterval(() => doSprayAt(sprayPos.x, sprayPos.y), 30);
+    lastBrushPos = { ...sprayPos };
+    if (STATE.activeTool === 'brush') {
+      doBrushAt(sprayPos.x, sprayPos.y);
+    } else {
+      doSprayAt(sprayPos.x, sprayPos.y);
+      sprayTimer = setInterval(() => doSprayAt(sprayPos.x, sprayPos.y), 30);
+    }
   });
 
   sprayCanvas.addEventListener('mousemove', e => {
     if (!isSpraying) return;
     const rect = sprayCanvas.getBoundingClientRect();
-    sprayPos = { x: e.clientX - rect.left, y: e.clientY - rect.top };
-    doSprayAt(sprayPos.x, sprayPos.y);
+    const newPos = { x: e.clientX - rect.left, y: e.clientY - rect.top };
+    if (STATE.activeTool === 'brush') {
+      interpolateBrush(lastBrushPos.x, lastBrushPos.y, newPos.x, newPos.y);
+      lastBrushPos = newPos;
+    } else {
+      sprayPos = newPos;
+    }
   });
 
   document.addEventListener('mouseup', () => {
     if (!isSpraying) return;
     isSpraying = false;
+    lastBrushPos = null;
     clearInterval(sprayTimer);
     sprayTimer = null;
   });
@@ -1100,6 +1115,30 @@ function doSprayAt(x, y) {
   const ctx = $('spray-canvas').getContext('2d');
   ctx.clearRect(0, 0, sprayBuffer.width, sprayBuffer.height);
   ctx.drawImage(sprayBuffer, 0, 0);
+}
+
+function doBrushAt(x, y) {
+  const radii = [3, 7, 14];
+  const radius = radii[STATE.toolSize];
+  const color = STATE.pendingColor || '#000000';
+  sprayBufferCtx.fillStyle = color;
+  sprayBufferCtx.beginPath();
+  sprayBufferCtx.arc(x, y, radius, 0, 2 * Math.PI);
+  sprayBufferCtx.fill();
+  const ctx = $('spray-canvas').getContext('2d');
+  ctx.clearRect(0, 0, sprayBuffer.width, sprayBuffer.height);
+  ctx.drawImage(sprayBuffer, 0, 0);
+}
+
+function interpolateBrush(x1, y1, x2, y2) {
+  const radius = [3, 7, 14][STATE.toolSize];
+  const step = Math.max(1, radius * 0.5);
+  const dist = Math.hypot(x2 - x1, y2 - y1);
+  const steps = Math.ceil(dist / step);
+  for (let i = 0; i <= steps; i++) {
+    const t = steps === 0 ? 0 : i / steps;
+    doBrushAt(x1 + (x2 - x1) * t, y1 + (y2 - y1) * t);
+  }
 }
 
 function clearSprayCanvas() {
